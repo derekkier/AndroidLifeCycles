@@ -123,13 +123,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void displayLifeCycleChange(String cycle)
     {
-        Date curdate = new Date();
-        /*
-        SimpleDateFormat format = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
-        String DateToStr = format.format(curDate);
-        */
+        Date currentDate = new Date();
+        SimpleDateFormat dateFormat  = new SimpleDateFormat("MM/dd/y h:mm:ss a");
+        String dateToStr = dateFormat.format(currentDate);
 
-        appendTextView("\n"+cycle+" called at: "+curdate+".","10");
+        appendTextView("\n"+cycle+" called at: "+dateToStr+".","10");
     }
 
     public void appendTextView(String str, String passedID)
