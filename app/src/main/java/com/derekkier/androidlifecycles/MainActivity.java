@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         //TextView tvOut = new TextView();
         appendTextView("\nAppend the text.");
         */
-        appendTextView("\nAppend the text.","9");
     }
 
     @Override
@@ -76,11 +75,12 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//    @Override
-//    public void onStart()
-//    {
-//
-//    }
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        appendTextView("\nAppend the text.","10");
+    }
 
     public void appendTextView(String str, String passedID)
     {
