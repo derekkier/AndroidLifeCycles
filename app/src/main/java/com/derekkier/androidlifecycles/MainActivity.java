@@ -1,11 +1,14 @@
 package com.derekkier.androidlifecycles;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -79,7 +82,53 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart()
     {
         super.onStart();
-        appendTextView("\nAppend the text.","10");
+        displayLifeCycleChange("onStart");
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        displayLifeCycleChange("onPause");
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        displayLifeCycleChange("onResume");
+    }
+
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
+        displayLifeCycleChange("onStop");
+    }
+
+    @Override
+    protected void onRestart()
+    {
+        super.onRestart();
+        displayLifeCycleChange("onRestart");
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        displayLifeCycleChange("onDestroy");
+    }
+
+    private void displayLifeCycleChange(String cycle)
+    {
+        Date curdate = new Date();
+        /*
+        SimpleDateFormat format = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+        String DateToStr = format.format(curDate);
+        */
+
+        appendTextView("\n"+cycle+" called at: "+curdate+".","10");
     }
 
     public void appendTextView(String str, String passedID)
