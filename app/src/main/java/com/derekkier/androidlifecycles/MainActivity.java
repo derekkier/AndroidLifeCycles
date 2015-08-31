@@ -51,16 +51,13 @@ public class MainActivity extends AppCompatActivity {
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT
         );
-
-        WebView wv = (WebView)findViewById(R.id.wv);
-        wv.setWebViewClient(new WebViewClient());
-        wv.loadUrl("http://google.com");
-//        WebView webView = new WebView(this);
-//        //webView.setId(20);
-//        webView.setId(View.generateViewId());
-//        params.addRule(RelativeLayout.BELOW, 10);
-//        RL.addView(webView, params);
-//        webView.loadUrl("http://google.com");
+        WebView webView = new WebView(this);
+        //webView.setId(11);
+        //webView.setId(View.generateViewId());
+        params.addRule(RelativeLayout.BELOW, 10);
+        RL.addView(webView, params);
+        webView.setWebViewClient(new WebViewClient());
+        webView.loadUrl("http://google.com");
         /*
             final RelativeLayout.LayoutParams params =
                 new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT,
