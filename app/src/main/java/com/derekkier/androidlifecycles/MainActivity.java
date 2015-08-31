@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 //import android.widget.ScrollView;
+import android.view.View;
 import android.webkit.WebView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -50,10 +51,11 @@ public class MainActivity extends AppCompatActivity {
                 RelativeLayout.LayoutParams.WRAP_CONTENT
         );
         WebView webView = new WebView(this);
-        webView.setId(11);
+        //webView.setId(20);
+        webView.setId(View.generateViewId());
         params.addRule(RelativeLayout.BELOW, 10);
-        webView.loadUrl("http://google.com");
         RL.addView(webView, params);
+        webView.loadUrl("http://google.com");
         /*
             final RelativeLayout.LayoutParams params =
                 new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT,
