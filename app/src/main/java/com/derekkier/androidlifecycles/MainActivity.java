@@ -7,6 +7,7 @@ import android.view.MenuItem;
 //import android.widget.ScrollView;
 import android.view.View;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import java.text.SimpleDateFormat;
@@ -50,12 +51,16 @@ public class MainActivity extends AppCompatActivity {
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT
         );
-        WebView webView = new WebView(this);
-        //webView.setId(20);
-        webView.setId(View.generateViewId());
-        params.addRule(RelativeLayout.BELOW, 10);
-        RL.addView(webView, params);
-        webView.loadUrl("http://google.com");
+
+        WebView wv = (WebView)findViewById(R.id.wv);
+        wv.setWebViewClient(new WebViewClient());
+        wv.loadUrl("http://google.com");
+//        WebView webView = new WebView(this);
+//        //webView.setId(20);
+//        webView.setId(View.generateViewId());
+//        params.addRule(RelativeLayout.BELOW, 10);
+//        RL.addView(webView, params);
+//        webView.loadUrl("http://google.com");
         /*
             final RelativeLayout.LayoutParams params =
                 new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT,
