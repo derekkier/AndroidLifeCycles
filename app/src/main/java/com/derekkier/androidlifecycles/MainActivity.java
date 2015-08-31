@@ -4,17 +4,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-//import android.widget.ScrollView;
-import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Random;
+import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,49 +15,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        RelativeLayout RL = (RelativeLayout)findViewById(R.id.RL);
-//        TextView tvOut = new TextView(this);
-//        tvOut.setText("TV Out Text.");
-//        RL.addView(tvOut);
-        Random rnd = new Random();
-        int prevTextViewId = 0;
-        for(int i = 0; i < 10; i++)
-        {
-            final TextView textView = new TextView(this);
-            textView.setTextColor(rnd.nextInt() | 0xff000000);
-
-            int curTextViewId = prevTextViewId + 1;
-            textView.setId(curTextViewId);
-            textView.setText("Text " + curTextViewId);
-            final RelativeLayout.LayoutParams params =
-                new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
-                                                RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-            params.addRule(RelativeLayout.BELOW, prevTextViewId);
-            textView.setLayoutParams(params);
-
-            prevTextViewId = curTextViewId;
-            RL.addView(textView, params);
-        }
-        final RelativeLayout.LayoutParams params =
-        new RelativeLayout.LayoutParams
+        LinearLayout layout = (LinearLayout)findViewById(R.id.layout);
+        final LinearLayout.LayoutParams params =
+        new LinearLayout.LayoutParams
         (
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
         );
         WebView webView = new WebView(this);
-        //webView.setId(11);
-        //webView.setId(View.generateViewId());
-        params.addRule(RelativeLayout.BELOW, 10);
-        RL.addView(webView, params);
+        //params.addRule(LinearLayout.BELOW, 10);
+        layout.addView(webView);
         webView.setWebViewClient(new WebViewClient() {
             @Override
-            public void onPageFinished(WebView view, String url)
-            {
+            public void onPageFinished(WebView view, String url) {
                 view.loadUrl("javascript:(function() { " +
-                "document.getElementsByClassName('z-navbar-wrapper')[0].style.backgroundColor='red';" +
-                "document.getElementsByTagName('body')[0].style.color = 'red'; " +
-                "})()");
+                        "document.getElementsByClassName('z-navbar-wrapper')[0].style.backgroundColor='red';" +
+                        "document.getElementsByTagName('body')[0].style.color = 'red'; " +
+                        "})()");
             }
         });
         WebSettings webSettings = webView.getSettings();
@@ -72,21 +39,6 @@ public class MainActivity extends AppCompatActivity {
         //webView.loadUrl("http://php.vectorflash.biz");
         webView.loadUrl("http://globalapp.zuppler.com/show.html?channel=skinnyfats&permalink=skinnyfats2");
 
-        //webView.loadUrl("javascript:alert('test');");
-        //webView.loadUrl("javascript:document.forms[0].q.value='[android]'");
-        /*
-            final RelativeLayout.LayoutParams params =
-                new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT,
-                                                RelativeLayout.LayoutParams.WRAP_CONTENT);
-        params.addRule(RelativeLayout.BELOW, prevTextViewId);
-        TextView.setLayoutParams(params);
-        TextView tvOut = new TextView(this);
-        tvOut.setText("TV Out Text.");
-        RL.addView(tvOut);
-        //public RelativeLayout = (R.layout.activity_main.RL);
-        //TextView tvOut = new TextView();
-        appendTextView("\nAppend the text.");
-        */
     }
 
     @Override
@@ -111,64 +63,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onStart()
-    {
-        super.onStart();
-        displayLifeCycleChange("onStart");
-    }
-
-    @Override
-    protected void onPause()
-    {
-        super.onPause();
-        displayLifeCycleChange("onPause");
-    }
-
-    @Override
-    protected void onResume()
-    {
-        super.onResume();
-        displayLifeCycleChange("onResume");
-    }
-
-    @Override
-    protected void onStop()
-    {
-        super.onStop();
-        displayLifeCycleChange("onStop");
-    }
-
-    @Override
-    protected void onRestart()
-    {
-        super.onRestart();
-        displayLifeCycleChange("onRestart");
-    }
-
-    @Override
-    protected void onDestroy()
-    {
-        super.onDestroy();
-        displayLifeCycleChange("onDestroy");
-    }
-
-    private void displayLifeCycleChange(String cycle)
-    {
-        Date currentDate = new Date();
-        SimpleDateFormat dateFormat  = new SimpleDateFormat("MM/dd/y h:mm:ss a");
-        String dateToStr = dateFormat.format(currentDate);
-
-        appendTextView("\n"+cycle+" called at: "+dateToStr+".","10");
-    }
-
-    public void appendTextView(String str, String passedID)
-    {
-        //final TextView TextView
-        int resID = getResources().getIdentifier(passedID, "id", getPackageName());
-        //TextView thisTextView = (TextView)findViewById( R.id.passedID);
-        TextView thisTextView = (TextView)findViewById(resID);
-        //thisTextView.setText(str);
-        thisTextView.append(str);
-    }
 }
