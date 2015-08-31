@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         //webView.setId(View.generateViewId());
         params.addRule(RelativeLayout.BELOW, 10);
         RL.addView(webView, params);
-        //webView.setWebViewClient(new WebClient());
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url)
