@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,23 +15,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        LinearLayout layout = (LinearLayout)findViewById(R.id.layout);
-        final LinearLayout.LayoutParams params =
-        new LinearLayout.LayoutParams
+        RelativeLayout layout = (RelativeLayout)findViewById(R.id.layout);
+        final RelativeLayout.LayoutParams params =
+        new RelativeLayout.LayoutParams
         (
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
+                RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT
         );
         WebView webView = new WebView(this);
-        //params.addRule(LinearLayout.BELOW, 10);
+        //params.addRule(RelativeLayout.BELOW, 10);
         layout.addView(webView);
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
+                //Show the actual html in this section, I'm not sure if it is generated or not.
+                view.loadUrl("javascript:(function() { document.getElementsByTagName('body')[0].innerHTML='test'; }();");
+                /*
                 view.loadUrl("javascript:(function() { " +
                         "document.getElementsByClassName('z-navbar-wrapper')[0].style.backgroundColor='red';" +
                         "document.getElementsByTagName('body')[0].style.color = 'red'; " +
                         "})()");
+                */
             }
         });
         WebSettings webSettings = webView.getSettings();
