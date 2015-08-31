@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 //import android.widget.ScrollView;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.RelativeLayout;
@@ -56,8 +57,24 @@ public class MainActivity extends AppCompatActivity {
         //webView.setId(View.generateViewId());
         params.addRule(RelativeLayout.BELOW, 10);
         RL.addView(webView, params);
-        webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl("http://google.com");
+        //webView.setWebViewClient(new WebClient());
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url)
+            {
+                view.loadUrl("javascript:(function() { " +
+                "document.getElementsByClassName('z-navbar-wrapper')[0].style.backgroundColor='red';" +
+                "document.getElementsByTagName('body')[0].style.color = 'red'; " +
+                "})()");
+            }
+        });
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        //webView.loadUrl("http://php.vectorflash.biz");
+        webView.loadUrl("http://globalapp.zuppler.com/show.html?channel=skinnyfats&permalink=skinnyfats2");
+
+        //webView.loadUrl("javascript:alert('test');");
+        //webView.loadUrl("javascript:document.forms[0].q.value='[android]'");
         /*
             final RelativeLayout.LayoutParams params =
                 new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.FILL_PARENT,
