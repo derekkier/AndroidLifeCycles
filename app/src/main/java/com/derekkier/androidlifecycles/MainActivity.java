@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 //Show the actual html in this section, I'm not sure if it is generated or not.
-                view.loadUrl("javascript:(function() { document.getElementsByTagName('body')[0].innerHTML='test'; }();");
+                view.loadUrl("javascript:(function() { document.getElementsByTagName('body')[0].innerHTML+='<textarea>'+document.getElementsByClassName('ui-widget-content')[0].innerHTML+'</textarea>'; })();");
+                //view.loadUrl("javascript:(function() { document.getElementsByTagName('body')[0].innerHTML+='<textarea><b>bold</b> test</textarea>'; })();");
                 /*
                 view.loadUrl("javascript:(function() { " +
                         "document.getElementsByClassName('z-navbar-wrapper')[0].style.backgroundColor='red';" +
@@ -40,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
         });
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        //webView.loadUrl("http://php.vectorflash.biz");
-        webView.loadUrl("http://globalapp.zuppler.com/show.html?channel=skinnyfats&permalink=skinnyfats2");
+        webView.loadUrl("http://performancebuildersnv.com");
+        //webView.loadUrl("http://globalapp.zuppler.com/show.html?channel=skinnyfats&permalink=skinnyfats2");
 
     }
 
